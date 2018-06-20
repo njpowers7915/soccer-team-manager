@@ -8,10 +8,24 @@ class SessionsController < ApplicationController
     end
 
     get '/signup' do
-        @user = Helpers.current_user(session)
-        if Helpers.is_logged_in?(session) == false
-            erb :'/teams/signup'
+        erb :'/teams/signup'
+        #@user = Helpers.current_user(session)
+        #if Helpers.is_logged_in?(session) == false
+        #    erb :'/teams/signup'
         #else
         #    redirect '/tweets'
+        #end
+    end
+
+    post '/signup' do
+        @team = Team.new(:name => params[:name], :username => params[:username], :password => params[:password])
+        if params[:name] == "" || params[:username] == "" || params[:password] == ""
+          redirect '/signup'
+        else
+          @team.save
+          session[:team_id] = @team.id
+          redirect 'teams/show'
         end
     end
+    
+end
