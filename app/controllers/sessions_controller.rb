@@ -40,6 +40,13 @@ class SessionsController < ApplicationController
     end
 
     post '/login' do
+        @team = Team.find_by(:username => params[:username])
+        if @team && @team.authenticate(params[:password])
+            session[:team_id] = @team.id
+            redirect "teams/#{@team.slug}"
+        else
+            redirect '/login'
+        end
     end
 
     get '/logout' do
