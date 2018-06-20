@@ -1,3 +1,5 @@
+require 'pry'
+
 class SessionsController < ApplicationController
     register Sinatra::ActiveRecordExtension
     set :views, Proc.new { File.join(root, "../views/") }
@@ -24,7 +26,7 @@ class SessionsController < ApplicationController
         else
           @team.save
           session[:team_id] = @team.id
-          redirect 'teams/:slug'
+          redirect "teams/#{@team.slug}"
         end
     end
     
