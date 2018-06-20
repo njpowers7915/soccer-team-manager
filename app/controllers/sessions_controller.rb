@@ -10,13 +10,13 @@ class SessionsController < ApplicationController
     end
 
     get '/signup' do
-        erb :'/teams/signup'
-        #@user = Helpers.current_user(session)
-        #if Helpers.is_logged_in?(session) == false
-        #    erb :'/teams/signup'
-        #else
-        #    redirect '/tweets'
-        #end
+        #erb :'/teams/signup'
+        @team = Helpers.current_team(session)
+        if Helpers.is_logged_in?(session) == false
+            erb :'/teams/signup'
+        else
+            redirect "teams/#{@team.slug}"
+        end
     end
 
     post '/signup' do
@@ -29,5 +29,21 @@ class SessionsController < ApplicationController
           redirect "teams/#{@team.slug}"
         end
     end
-    
+
+    get '/login' do
+
+    end
+
+    post '/login' do
+    end
+
+    get '/logout' do
+        if Helpers.is_logged_in?(session)
+            session.clear
+            redirect '/'
+        else
+            redirect '/'
+        end
+    end
+
 end
