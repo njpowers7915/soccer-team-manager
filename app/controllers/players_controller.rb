@@ -15,4 +15,20 @@ class PlayersController < ApplicationController
           erb :'players/new'
         end
     end
+
+    post '/players/new' do
+        if params["player"].values.include?("") #|| params["country"]["name"] == ""
+            redirect '/players/new'
+        else
+            @player = Player.new(params["player"])
+            @player.team = Team.find_by(id: session["team_id"])
+            @player.country = Country.find_by(name: params["country"]["name"])
+            country_team = CountryTeam.new
+            #country_team.team_id = @player.team.id
+            #country_team.country_id = @player.country.id
+            #@player.country
+            @player.save
+            redirect "teams/#{@player.team.slug}"
+        end
+    end
 end
