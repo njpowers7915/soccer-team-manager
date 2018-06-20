@@ -1,6 +1,11 @@
 <form action="/players/new" method="POST">
 <h3>Name: <input type="text" name="player[name]" id="player_name"></h3>
-<h3>Position: <input type="text" name="player[position]" id="position"></h3>
+<h3>Position: <select name="player[position]">
+    <option value="FWD">FWD</option>
+    <option value="MID">MID</option>
+    <option value="DEF">DEF</option>
+    <option value="GK">GK</option>
+</select>
 <h3>Number: <input type="integer" name="player[number]" id="position"></h3>
 <h3>Country: </h3>
 <h4>Choose existing -><%Country.all.each do |country|%>
