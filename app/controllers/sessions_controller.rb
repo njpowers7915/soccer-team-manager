@@ -31,7 +31,12 @@ class SessionsController < ApplicationController
     end
 
     get '/login' do
-
+        @team = Helpers.current_team(session)
+        if Helpers.is_logged_in?(session) == false
+            erb :'teams/login'
+        else
+            redirect "teams/#{@team.slug}"
+        end
     end
 
     post '/login' do
