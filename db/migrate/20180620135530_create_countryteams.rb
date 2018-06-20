@@ -1,4 +1,4 @@
-class CreateCountryTeams < ActiveRecord::Migration
+class CreateCountryteams < ActiveRecord::Migration
   def change
       create_table :country_teams do |t|
           t.integer :country_id
