@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
         else
           @team.save
           session[:team_id] = @team.id
-          redirect 'teams/show'
+          redirect 'teams/:slug'
         end
     end
     
