@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180620135530) do
+ActiveRecord::Schema.define(version: 20180620172845) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20180620135530) do
     t.string  "position"
     t.integer "team_id"
     t.integer "country_id"
+    t.integer "number"
   end
 
   create_table "teams", force: :cascade do |t|
