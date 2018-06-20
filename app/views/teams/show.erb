@@ -1,6 +1,12 @@
 <h2><%= @team.name %> Roster</h2>
-<br>
-<p>Player List</p>
+<ul>
+    <% @team.players.each do |player| %>
+    <li><%= player.number %>. <%= player.name %> --- <%= player.position %> --- <%= player.country %> --- EDIT</li>
+    <br>
+    <%end%>
+</ul>
+
+
 <h3>Add Player to Roster <a href='/players/new'>+</a></h3>
 <h3><a href='/logout'>Log Out</a></h3>
 <br>
