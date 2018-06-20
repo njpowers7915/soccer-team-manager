@@ -31,4 +31,14 @@ class PlayersController < ApplicationController
             redirect "teams/#{@player.team.slug}"
         end
     end
+
+    get 'players/:slug' do
+        @team = Helpers.current_team(session)
+        if Helpers.is_logged_in?(session) == false
+            redirect '/login'
+        else
+            @player = Player.find_by_slug(params[:slug])
+            erb :'/players/show'
+        end
+    end
 end
