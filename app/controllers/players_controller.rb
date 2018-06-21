@@ -1,11 +1,4 @@
 class PlayersController < ApplicationController
-    register Sinatra::ActiveRecordExtension
-    set :views, Proc.new { File.join(root, "../views/") }
-
-    configure do
-      enable :sessions
-      set :session_secret, "secret"
-    end
 
     get '/players/new' do
         @team = Helpers.current_team(session)
@@ -83,7 +76,7 @@ class PlayersController < ApplicationController
              @player = Player.find_by_slug(params[:slug])
              if @player.team.id == session[:team_id]
                  @player.destroy
-                 redirect "teams/#{@player.team.slug}"
+                 redirect "teams/#{@team.slug}"
              end
          end
      end

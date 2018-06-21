@@ -4,7 +4,12 @@
 <h3>Number: <%= @player.number %></h3>
 <h3>Team: <%= @player.team.name %></h3>
 <h3>Country:  #@player.country.name </h3>
+
+<h3><a href='/players/<%=@player.slug%>/edit'>EDIT</a></h3>
+
+<form method="post" action="/players/<%=@player.slug%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Player">
+</form>
 <br>
 <h3><a href='/teams/<%=@player.team.slug%>'>Back to Team Page</a></h3>
-<h3><a href='/players/<%=@player.slug%>/edit'>EDIT</a></h3>
-<h3><a href='/players/<%=@player.slug%>/delete'>DELETE</h3>
