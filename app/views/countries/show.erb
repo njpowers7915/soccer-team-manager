@@ -1,7 +1,7 @@
 <h2>Players from <%= @country.name %></h2>
 <ul>
     <% @country.players.order(:name).each do |player| %>
-    <li><a href='/players/<%=player.slug%>'><%= player.name %></a> --- <%= player.position %> --- <%= player.team.name %></li>
+    <li><a href='/players/<%=player.slug%>'><%= player.name %></a> --- <%= player.position %> --- <a href='/teams/<%=player.team.slug%>'><%= player.team.name %></a></li>
     <br>
     <%end%>
 </ul>
