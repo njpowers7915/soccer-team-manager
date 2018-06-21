@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
         else
           @team.save
           session[:team_id] = @team.id
+          session[:last_visited] = @team.id
           redirect "teams/#{@team.slug}"
         end
     end
@@ -34,6 +35,7 @@ class SessionsController < ApplicationController
         @team = Team.find_by(:username => params[:username])
         if @team && @team.authenticate(params[:password])
             session[:team_id] = @team.id
+            session[:last_visited] = @team.id
             redirect "teams/#{@team.slug}"
         else
             redirect '/login'
