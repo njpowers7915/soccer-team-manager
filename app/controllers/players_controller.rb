@@ -79,6 +79,8 @@ class PlayersController < ApplicationController
              if @player.team.id == session[:team_id]
                  @player.destroy
                  redirect "teams/#{@team.slug}"
+             else
+                 erb :'errors/player_edit_error'
              end
          end
      end
