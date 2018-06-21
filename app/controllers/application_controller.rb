@@ -24,4 +24,9 @@ class ApplicationController < Sinatra::Base
         erb :'teams/index'
     end
 
+    get '/players' do
+        @players = Player.all
+        erb :'players/index'
+    end
+
 end
