@@ -2,7 +2,6 @@ class PlayersController < ApplicationController
 
     get '/players/new' do
         @team = Helpers.current_team(session)
-        binding.pry
         if Helpers.is_logged_in?(session) == false
           redirect '/login'
         else
