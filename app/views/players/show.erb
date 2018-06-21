@@ -3,7 +3,7 @@
 <h3>Position: <%= @player.position %></h3>
 <h3>Number: <%= @player.number %></h3>
 <h3>Team: <a href='/teams/<%=@player.team.slug%>'><%= @player.team.name %></a></h3>
-<h3>Country:  #@player.country.name </h3>
+<h3>Country: <a href='/countries/<%=@player.country.slug%>'><%=@player.country.name%></a> </h3>
 
 <h3><a href='/players/<%=@player.slug%>/edit'>EDIT</a></h3>
 
