@@ -32,13 +32,46 @@ class PlayersController < ApplicationController
         end
     end
 
-    get 'players/:slug' do
+    get '/players/:slug' do
         @team = Helpers.current_team(session)
         if Helpers.is_logged_in?(session) == false
             redirect '/login'
         else
             @player = Player.find_by_slug(params[:slug])
-            erb :'/players/show'
+            erb :'players/show'
         end
     end
-end
+
+    get '/players/:slug/edit' do
+        @team = Helpers.current_team(session)
+        if Helpers.is_logged_in?(session) == false
+            redirect '/login'
+        else
+            @player = Player.find_by_slug(params[:slug])
+            if @player.team_id == session[:team_id]
+                erb :'players/edit'
+            else
+                erb :'errors/player_edit_error'
+            end
+        end
+    end
+
+    patch '/players/:slug' do
+      @player = Player.find_by_slug(params[:slug])
+
+      if params["player"]["name"] != ""
+          @player.name = params["player"]["name"]
+      end
+
+      if !params["player"]["position"].nil?
+          @player.position = params["player"]["position"]
+      end
+
+      if params["player"]["number"] != ""
+          @player.number = params["player"]["number"]
+      end
+      #if params["country"]
+      @player.save
+      redirect "players/#{@player.slug}"
+     end
+ end

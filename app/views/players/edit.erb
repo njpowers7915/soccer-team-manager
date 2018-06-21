@@ -1,0 +1,28 @@
+<h1> Update Player </h1>
+
+<form action="/players/<%= @player.slug %>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+<h3>Name: <%= @player.name %> -- Change to: <input type="text" name="player[name]" id="player_name"></input></h3>
+
+<h3>Position: <%= @player.position %> -- Change to:
+    <select name="player[position]">
+        <option value="<%= @player.position %>" selected><%= @player.position%></option>
+        <option value="FWD">FWD</option>
+        <option value="MID">MID</option>
+        <option value="DEF">DEF</option>
+        <option value="GK">GK</option>
+    </select></h3>
+
+<h3>Number: <%= @player.number %> -- Change to: <input type="integer" name="player[number]" id="position"></input></h3>
+
+<h3>Country: </h3>
+<h4>Choose existing -><%Country.all.each do |country|%>
+    <select id="<%= country.id %>" name="player[country_id]"><option value="<%= country.id%>"><%= country.name %></option></select>
+    <%end%>
+    <label>OR add a new country by name:</label>
+        <input type="text" name="country[name]"></input>
+    <br></br>
+
+
+    <input type="submit" value="Save" id="submit">
+</form>
