@@ -2,7 +2,7 @@
 
 <h3>Position: <%= @player.position %></h3>
 <h3>Number: <%= @player.number %></h3>
-<h3>Team: <%= @player.team.name %></a></h3>
+<h3>Team: <a href='/teams/<%=@player.team.slug%>'><%= @player.team.name %></a></h3>
 <h3>Country:  #@player.country.name </h3>
 
 <h3><a href='/players/<%=@player.slug%>/edit'>EDIT</a></h3>
@@ -12,4 +12,3 @@
   <input type="submit" value="Delete Player">
 </form>
 <br>
-<h3><a href='/teams/<%=@player.team.slug%>'>Back to Team Page</a></h3>
