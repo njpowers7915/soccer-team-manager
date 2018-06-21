@@ -1,0 +1,7 @@
+<h2>Country Index</h2>
+
+<ul>
+    <% Country.all.order(:name).each do |country| %>
+    <li><a href='/countries/<%=country.slug%>'><%= country.name %></a></li>
+    <%end%>
+</ul>
