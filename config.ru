@@ -10,3 +10,4 @@ run ApplicationController
 use SessionsController
 use TeamsController
 use PlayersController
+use CountriesController
