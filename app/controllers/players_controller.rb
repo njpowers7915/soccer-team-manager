@@ -23,7 +23,7 @@ class PlayersController < ApplicationController
             if params["country"]["name"] != ""
                 country = Country.find_by(name: params["country"]["name"])
                 if country.nil?
-                    new_country = Country.new(name: params["country"]["name"])
+                    new_country = Country.new(name: params["country"]["name"]).save
                     @player.country = new_country
                 else
                     @player.country = country
@@ -31,9 +31,9 @@ class PlayersController < ApplicationController
             else
                 @player.country = Country.find_by(id: params["player"]["country_id"])
             end
-        country_team = CountryTeam.new
-        country_team.team_id = @player.team.id
-        country_team.country_id = @player.country.id
+        #country_team = CountryTeam.new
+        #country_team.team_id = @player.team.id
+        #country_team.country_id = @player.country.id
         @player.save
         binding.pry
         redirect "teams/#{@player.team.slug}"
@@ -78,11 +78,23 @@ class PlayersController < ApplicationController
       if params["player"]["number"] != ""
           @player.number = params["player"]["number"]
       end
-      
-      if params["player"]["country_id"].nil? && !params["country"]["name"].nil?
-          @player.c
 
-
+      if params["country"]["name"] != ""
+          country = Country.find_by(name: params["country"]["name"])
+          if country.nil?
+              new_country = Country.new(name: params["country"]["name"])
+              new_country.save
+              @player.country = new_country
+          else
+              @player.country = country
+          end
+      elsif params["country"]["name"] == "" && !params["player"]["country_id"].nil?
+          @player.country = Country.find_by(id: params["player"]["country_id"])
+      end
+      #CountryTeam.find_by(team_id: session["team_id"]).destroy_all
+      #country_team = CountryTeam.new
+      #country_team.team_id = @player.team.id
+      #country_team.country_id = @player.country.id
 
       @player.save
       redirect "players/#{@player.slug}"
