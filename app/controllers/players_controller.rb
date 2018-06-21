@@ -5,8 +5,10 @@ class PlayersController < ApplicationController
         if Helpers.is_logged_in?(session) == false
           redirect '/login'
         else
-          if session[:team_id] == @team.id
+          if session[:team_id] == session[:last_visited]
               erb :'players/new'
+          else
+              erb :'/errors/add_player_error'
           end
         end
     end
@@ -73,14 +75,14 @@ class PlayersController < ApplicationController
      delete '/players/:slug/delete' do
          @team = Helpers.current_team(session)
          if Helpers.is_logged_in?(session) == false
-             redirect '/login'
+             redirect '/teams/login'
          else
              @player = Player.find_by_slug(params[:slug])
              if @player.team.id == session[:team_id]
                  @player.destroy
-                 redirect "teams/#{@team.slug}"
+                 redirect "/teams/#{@team.slug}"
              else
-                 erb :'errors/player_edit_error'
+                 erb :'/errors/player_edit_error'
              end
          end
      end
