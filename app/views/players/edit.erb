@@ -2,9 +2,9 @@
 
 <form action="/players/<%= @player.slug %>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="patch">
-<h3>Name: <%= @player.name %> -- Change to: <input type="text" name="player[name]" id="player_name"></input></h3>
+<h3>Name: <%= @player.name %> --- Change to: <input type="text" name="player[name]" id="player_name"></input></h3>
 
-<h3>Position: <%= @player.position %> -- Change to:
+<h3>Position: <%= @player.position %> --- Change to:
     <select name="player[position]">
         <option value="<%= @player.position %>" selected><%= @player.position%></option>
         <option value="FWD">FWD</option>
@@ -13,14 +13,19 @@
         <option value="GK">GK</option>
     </select></h3>
 
-<h3>Number: <%= @player.number %> -- Change to: <input type="integer" name="player[number]" id="position"></input></h3>
+<h3>Number: <%= @player.number %> --- Change to: <input type="integer" name="player[number]" id="position"></input></h3>
 
-<h3>Country: </h3>
-<h4>Choose existing -><%Country.all.each do |country|%>
-    <select id="<%= country.id %>" name="player[country_id]"><option value="<%= country.id%>"><%= country.name %></option></select>
+<h3>Country: <%if @player.country != nil %>
+    <%= @player.country.name %>
+<%end%> </h3>
+
+<h4>Update to an existing country --><%Country.all.each do |country|%>
+    <input id="<%= country.id %>" type="checkbox" name="player[country_id]" value="<%=country.id%>"><%= country.name %></option></input>
     <%end%>
+    <br>
     <label>OR add a new country by name:</label>
-        <input type="text" name="country[name]"></input>
+        <input type="text" name="country[name]" id="country_name"></input></h4>
+
     <br></br>
 
 
