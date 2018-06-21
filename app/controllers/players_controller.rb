@@ -78,7 +78,12 @@ class PlayersController < ApplicationController
       if params["player"]["number"] != ""
           @player.number = params["player"]["number"]
       end
-      #if params["country"]
+      
+      if params["player"]["country_id"].nil? && !params["country"]["name"].nil?
+          @player.c
+
+
+
       @player.save
       redirect "players/#{@player.slug}"
      end
