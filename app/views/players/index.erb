@@ -1,7 +1,7 @@
 <h2>Player Index</h2>
 
 <ul>
-    <% Player.all.order(:position).order(:name)each do |player| %>
+    <% Player.all.order(:position).order(:name).each do |player| %>
     <li><%= player.position %> --- <a href='/players/<%=player.slug%>'><%= player.name %></a> --- <%= player.team.name %></li>
     <%end%>
 </ul>
