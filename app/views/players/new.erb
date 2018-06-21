@@ -12,12 +12,12 @@
 
 <h3>Country: </h3>
 <h4>Choose existing -><%Country.all.each do |country|%>
-    <input id="<%= country.id %>" type="checkbox" name="player[country_id]" value="<%=country.id"><%= country.name %></option></input>
+    <input id="<%= country.id %>" type="checkbox" name="player[country_id]" value="<%=country.id%>"><%= country.name %></option></input>
     <%end%>
     <label>OR add a new country by name:</label>
         <input type="text" name="country[name]" id="country_name"></input>
 
     <br></br>
-    
+
 <input type="submit" value="Add Player" id="submit">
 </form>

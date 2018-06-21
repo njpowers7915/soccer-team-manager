@@ -20,7 +20,7 @@ class PlayersController < ApplicationController
             @player = Player.new(params["player"])
             @player.team = Team.find_by(id: session["team_id"])
 
-            if params["country"]["name"] != nil
+            if params["country"]["name"] != ""
                 country = Country.find_by(name: params["country"]["name"])
                 if country.nil?
                     new_country = Country.new(name: params["country"]["name"])
@@ -29,12 +29,13 @@ class PlayersController < ApplicationController
                     @player.country = country
                 end
             else
-                @player.country = Country.find_by(id: params ["player"]["country_id"])
+                @player.country = Country.find_by(id: params["player"]["country_id"])
             end
         country_team = CountryTeam.new
         country_team.team_id = @player.team.id
         country_team.country_id = @player.country.id
         @player.save
+        binding.pry
         redirect "teams/#{@player.team.slug}"
         end
     end
