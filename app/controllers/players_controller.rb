@@ -1,5 +1,6 @@
 class PlayersController < ApplicationController
 
+#Create new player
     get '/players/new' do
         @team = Helpers.current_team(session)
         if Helpers.is_logged_in?(session) == false
@@ -13,6 +14,7 @@ class PlayersController < ApplicationController
         end
     end
 
+#POST new player route
     post '/players/new' do
         if params["player"].values.include?("") #|| params["country"]["name"] == ""
             redirect '/players/new'
@@ -40,6 +42,7 @@ class PlayersController < ApplicationController
         end
     end
 
+#GET individual player's show page
     get '/players/:slug' do
         @team = Helpers.current_team(session)
         if Helpers.is_logged_in?(session) == false
@@ -50,6 +53,7 @@ class PlayersController < ApplicationController
         end
     end
 
+#GET edit page for individual player
     get '/players/:slug/edit' do
         @team = Helpers.current_team(session)
         if Helpers.is_logged_in?(session) == false
@@ -64,6 +68,7 @@ class PlayersController < ApplicationController
         end
     end
 
+#Edit form for individual player
     patch '/players/:slug' do
       @player = Player.find_by_slug(params[:slug])
 
@@ -95,11 +100,11 @@ class PlayersController < ApplicationController
       #country_team = CountryTeam.new
       #country_team.team_id = @player.team.id
       #country_team.country_id = @player.country.id
-
       @player.save
       redirect "players/#{@player.slug}"
      end
 
+#Delete form for individual player
      delete '/players/:slug/delete' do
          @team = Helpers.current_team(session)
          if Helpers.is_logged_in?(session) == false
