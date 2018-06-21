@@ -29,4 +29,9 @@ class ApplicationController < Sinatra::Base
         erb :'players/index'
     end
 
+    get '/countries' do
+        @countries = Country.all
+        erb :'countries/index'
+    end
+
 end
