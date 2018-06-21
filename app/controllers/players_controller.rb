@@ -74,4 +74,17 @@ class PlayersController < ApplicationController
       @player.save
       redirect "players/#{@player.slug}"
      end
+
+     delete '/players/:slug/delete' do
+         @team = Helpers.current_team(session)
+         if Helpers.is_logged_in?(session) == false
+             redirect '/login'
+         else
+             @player = Player.find_by_slug(params[:slug])
+             if @player.team.id == session[:team_id]
+                 @player.destroy
+                 redirect "teams/#{@player.team.slug}"
+             end
+         end
+     end
  end
