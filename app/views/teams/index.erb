@@ -1,3 +1,5 @@
+<h2>List of Teams</h2>
+
 <ul>
     <% Team.all.order(:name).each do |team| %>
     <li><a href='teams/<%=team.slug%>'><%= team.name %></a></li>

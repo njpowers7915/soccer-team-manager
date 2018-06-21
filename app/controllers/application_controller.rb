@@ -11,7 +11,17 @@ class ApplicationController < Sinatra::Base
     end
 
     get '/' do
-        erb :home
+        @team = Helpers.current_team(session)
+        if Helpers.is_logged_in?(session) == false
+            erb :home
+        else
+            redirect "teams/#{@team.slug}"
+        end
+    end
+
+    get '/teams' do
+        @teams = Team.all
+        erb :'teams/index'
     end
 
 end
