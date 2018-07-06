@@ -34,9 +34,7 @@ class PlayersController < ApplicationController
             else
                 @player.country = Country.find_by(id: params["player"]["country_id"])
             end
-        #country_team = CountryTeam.new
-        #country_team.team_id = @player.team.id
-        #country_team.country_id = @player.country.id
+
         @player.save
         redirect "teams/#{@player.team.slug}"
         end
@@ -96,10 +94,7 @@ class PlayersController < ApplicationController
       elsif params["country"]["name"] == "" && !params["player"]["country_id"].nil?
           @player.country = Country.find_by(id: params["player"]["country_id"])
       end
-      #CountryTeam.find_by(team_id: session["team_id"]).destroy_all
-      #country_team = CountryTeam.new
-      #country_team.team_id = @player.team.id
-      #country_team.country_id = @player.country.id
+
       @player.save
       redirect "players/#{@player.slug}"
      end
