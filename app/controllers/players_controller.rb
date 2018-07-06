@@ -47,6 +47,7 @@ class PlayersController < ApplicationController
             redirect '/login'
         else
             @player = Player.find_by_slug(params[:slug])
+            session[:last_visited] = @player.id
             erb :'players/show'
         end
     end
