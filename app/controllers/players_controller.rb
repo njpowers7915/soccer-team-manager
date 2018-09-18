@@ -12,7 +12,7 @@ class PlayersController < ApplicationController
               erb :'/errors/add_player_error'
           end
         end
-    end
+    end 
 
 #POST new player route
     post '/players/new' do

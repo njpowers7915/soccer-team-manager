@@ -1,1 +1,19 @@
-Player.all.destroy
+Team.create(name: 'Chelsea', username: 'Maurizio Sari', password_digest: '12123')
+Team.create(name: 'Manchester United', username: 'Jose Mourinho', password_digest: '345234')
+Team.create(name: 'Liverpool', username: 'Jurgen Klopp', password_digest: '12222')
+
+Player.create(name: "N'Golo Kante", position: 'MID', team_id: 1, country_id: 1, number: 7)
+Player.create(name: "Eden Hazard", position: 'MID', team_id: 1, country_id: 2, number: 11)
+Player.create(name: "Cesc Fabregas", position: 'MID', team_id: 1, country_id: 3, number: 4)
+Player.create(name: "Juan Mata", position: 'MID', team_id: 2, country_id: 3, number: 8)
+Player.create(name: "Paul Pogba", position: 'MID', team_id: 2, country_id: 1, number: 6)
+Player.create(name: "Romelu Lukaku", position: 'FW', team_id: 2, country_id: 2, number: 9)
+Player.create(name: "Allison", position: 'GK', team_id: 3, country_id: 4, number: 1)
+Player.create(name: "Roberto Firmino", position: 'FW', team_id: 3, country_id: 4, number: 9)
+Player.create(name: "Mo Salah", position: 'FW', team_id: 3, country_id: 5, number: 11)
+
+Country.create(name: 'France')
+Country.create(name: 'Belgium')
+Country.create(name: 'Spain')
+Country.create(name: 'Brazil')
+Country.create(name: 'Egypt')
